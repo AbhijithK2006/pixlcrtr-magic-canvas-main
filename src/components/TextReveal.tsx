@@ -29,16 +29,14 @@ export const TextReveal = ({ text, className, delay = 0, once = true, as: Tag = 
   const wordVariants = {
     hidden: { 
       opacity: 0, 
-      y: 10,
-      filter: "blur(4px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };

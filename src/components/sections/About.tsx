@@ -181,12 +181,12 @@ export const About = () => {
               <motion.div 
                 key={p.id + "-mobile"} 
                 className="flex items-center"
-                initial={{ opacity: 0, y: 40, scale: 0.95, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ 
                   duration: 0.8, 
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: [0.16, 1, 0.3, 1],
                   delay: (i % 2) * 0.1
                 }}
               >

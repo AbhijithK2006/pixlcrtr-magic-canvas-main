@@ -67,24 +67,14 @@ export const AboutUs = () => {
             {team.map((member, i) => (
               <Reveal key={member.id} delay={0.1 + i * 0.05}>
                 <div className="group relative flex flex-col items-center">
-                  {/* Decorative number background */}
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 font-display text-7xl text-white/[0.03] select-none">
-                    0{i + 1}
-                  </div>
                   
-                  <div className="relative aspect-square w-24 sm:w-36 md:w-40 overflow-hidden rounded-full border border-white/10 bg-white/5 p-1 transition-all duration-700 ease-out-expo group-hover:border-white/40 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                  <div className="relative aspect-square w-24 sm:w-36 md:w-40 overflow-hidden rounded-full border border-white/20 bg-white/5 p-1 transition-all duration-700 ease-out-expo group-hover:border-white/60 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
                     {/* Inner Glass Layer */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/5 to-transparent backdrop-blur-sm" />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/10 to-transparent backdrop-blur-sm" />
                     
-                    {/* Aesthetic Gradient Placeholder */}
+                    {/* Placeholder Content — Empty and clean */}
                     <div className="relative h-full w-full overflow-hidden rounded-full">
-                       <div 
-                         className="h-full w-full opacity-40 transition-transform duration-1000 group-hover:scale-120 group-hover:rotate-12"
-                         style={{ 
-                           background: `radial-gradient(circle at 30% 30%, ${member.color}80, transparent), radial-gradient(circle at 70% 70%, #000 80%, ${member.color}40)` 
-                         }} 
-                       />
-                       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
+                       <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" />
                     </div>
 
                     {/* Hover Glow Rim */}
