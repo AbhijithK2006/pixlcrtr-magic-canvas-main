@@ -40,7 +40,7 @@ export const Hero = () => {
           className="glass mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-[0.2em] text-white/70"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-ice-glow animate-pulse-glow" />
-          Pixlcrtr Studio · Open for projects
+          Rubic Studio · Open for projects
         </motion.div>
 
         <motion.h1
@@ -49,7 +49,7 @@ export const Hero = () => {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           className="w-full font-display text-[clamp(2.5rem,10vw,9rem)] leading-[0.95] tracking-tight uppercase"
         >
-          PIXLCRTR
+          RUBIC STUDIO
         </motion.h1>
 
         <motion.p
@@ -58,7 +58,7 @@ export const Hero = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="mt-8 max-w-xl text-balance text-base text-white/60 sm:text-lg"
         >
-          At Pixlcrtr Studio, we design and build immersive websites, sleek interfaces, and smart digital systems — crafted with pixel-perfect precision and intelligent design.
+          At Rubic Studio, we design and build immersive websites, sleek interfaces, and smart digital systems — crafted with pixel-perfect precision and intelligent design.
         </motion.p>
 
         <motion.div

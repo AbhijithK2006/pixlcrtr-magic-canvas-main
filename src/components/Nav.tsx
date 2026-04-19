@@ -53,7 +53,7 @@ export const Nav = () => {
           <button onClick={() => scrollTo("top")} className="flex items-center gap-2">
             <span className={`inline-block h-2.5 w-2.5 rounded-full bg-gradient-ice ${scrolled ? "" : "animate-pulse-glow"}`} />
             <span className={`font-display text-xl tracking-tight ${dark || scrolled ? "text-white" : "text-foreground"}`}>
-              Pixlcrtr
+              Rubic Studio
             </span>
           </button>
 

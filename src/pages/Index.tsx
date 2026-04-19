@@ -14,8 +14,8 @@ const Contact = lazy(() => import("@/components/sections/Contact").then(m => ({ 
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Pixlcrtr — Crafting Digital Magic";
-    const desc = "Pixlcrtr is a boutique studio engineering immersive websites, interfaces and AI-powered products. Selected work, services and contact.";
+    document.title = "Rubic Studio — Crafting Digital Magic";
+    const desc = "Rubic Studio is a boutique studio engineering immersive websites, interfaces and AI-powered products. Selected work, services and contact.";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");

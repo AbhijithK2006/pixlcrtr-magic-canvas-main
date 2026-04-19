@@ -38,7 +38,7 @@ export const AboutUs = () => {
             
             <TextReveal 
               as="p"
-              text="At Pixlcrtr, we don’t just build websites — we craft digital experiences that blend design, performance, and intelligence."
+              text="At Rubic Studio, we don’t just build websites — we craft digital experiences that blend design, performance, and intelligence."
               className="justify-start text-xl md:text-2xl font-normal text-white/80 leading-relaxed"
               delay={0.05}
             />

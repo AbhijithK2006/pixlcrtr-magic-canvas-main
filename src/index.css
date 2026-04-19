@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pixlcrtr — Ice-blue minimal lux design system. All colors HSL. */
+/* Rubic Studio — Ice-blue minimal lux design system. All colors HSL. */
 
 @layer base {
   :root, [data-theme="light"] {

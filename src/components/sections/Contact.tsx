@@ -16,21 +16,43 @@ export const Contact = () => {
       return;
     }
     setStatus("loading");
-    const { error } = await supabase.from("contact_messages").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      message: form.message.trim(),
-    });
-    if (error) {
-      console.error(error);
-      toast.error("Could not send. Please try again.");
+
+    try {
+      // 1. Save to Supabase (Database Log)
+      const { error } = await supabase.from("contact_messages").insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+      });
+      
+      if (error) throw error;
+
+      // 2. Send Email via FormSubmit.co (Direct Notification)
+      await fetch("https://formsubmit.co/ajax/hello.rubicstudio@gmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+          _subject: `New Inquiry: ${form.name.trim()} via Rubic Studio`,
+          _captcha: "false" // Captcha is usually not needed for AJAX background calls
+        })
+      });
+
+      setStatus("success");
+      toast.success("Message received. We'll be in touch.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Could not send message. Please try again.");
       setStatus("idle");
-      return;
+    } finally {
+      setTimeout(() => setStatus("idle"), 2500);
     }
-    setStatus("success");
-    toast.success("Message received. We'll be in touch.");
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus("idle"), 2500);
   };
 
   return (
@@ -56,13 +78,15 @@ export const Contact = () => {
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-col gap-3">
               <a
-                href="mailto:hello@pixlcrtr.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.rubicstudio@gmail.com"
+                target="_blank"
+                rel="noreferrer"
                 className="group inline-flex items-center gap-3 text-sm transition-colors hover:text-primary"
               >
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Mail className="h-4 w-4" />
                 </span>
-                hello@pixlcrtr.com
+                hello.rubicstudio@gmail.com
               </a>
               <a
                 href="https://instagram.com"
@@ -73,7 +97,7 @@ export const Contact = () => {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Instagram className="h-4 w-4" />
                 </span>
-                @pixlcrtr
+                @rubicstudio
               </a>
             </div>
           </Reveal>
