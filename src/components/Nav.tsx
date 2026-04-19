@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Logo } from "./Logo";
 
 const links = [
   { id: "about", label: "Studio" },
@@ -50,9 +51,12 @@ export const Nav = () => {
               : "border-transparent bg-transparent"
           }`}
         >
-          <button onClick={() => scrollTo("top")} className="flex items-center gap-2">
-            <span className={`inline-block h-2.5 w-2.5 rounded-full bg-gradient-ice ${scrolled ? "" : "animate-pulse-glow"}`} />
-            <span className={`font-display text-xl tracking-tight ${dark || scrolled ? "text-white" : "text-foreground"}`}>
+          <button onClick={() => scrollTo("top")} className="group flex items-center gap-3">
+            <Logo
+              size={scrolled ? 34 : 40}
+              className="transition-all duration-700 ease-out-expo group-hover:scale-110"
+            />
+            <span className={`font-display text-xl tracking-tight transition-colors duration-700 ${dark || scrolled ? "text-white" : "text-foreground"}`}>
               Rubic Studio
             </span>
           </button>

@@ -1,13 +1,15 @@
+import { Logo } from "./Logo";
+
 export const Footer = () => {
   return (
     <footer data-theme="dark" className="relative overflow-hidden bg-ink py-16 text-white">
       <div className="container flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-gradient-ice" />
+          <div className="flex items-center gap-3">
+            <Logo size={48} />
             <span className="font-display text-2xl tracking-tight">Rubic Studio</span>
           </div>
-          <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
+          <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
             RUBIC STUDIO · est. 2024
           </p>
         </div>

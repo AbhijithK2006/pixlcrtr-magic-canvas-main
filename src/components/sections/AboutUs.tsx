@@ -2,10 +2,10 @@ import { Reveal } from "../Reveal";
 import { TextReveal } from "../TextReveal";
 
 const team = [
-  { name: "Abhijith", role: "Founder", id: "abhijith", color: "#60A5FA" },
+  { name: "Abhijith", role: "Founder", id: "abhijith", color: "#60A5FA", link: "https://abhijithpfo.netlify.app/" },
   { name: "Aiman", role: "Founder", id: "aiman", color: "#FBBF24" },
-  { name: "Binyamin", role: "Founder", id: "binyamin", color: "#A78BFA" },
-  { name: "Raeed", role: "Founder", id: "raeed", color: "#34D399" },
+  { name: "Binyamin", role: "Founder", id: "binyamin", color: "#A78BFA", link: "https://bttportfolio.netlify.app/" },
+  { name: "Raeed", role: "Founder", id: "raeed", color: "#34D399", link: "https://raeedprtflo.netlify.app/" },
   { name: "Rizwan", role: "Founder", id: "rizwan", color: "#F472B6" },
 ];
 
@@ -66,33 +66,40 @@ export const AboutUs = () => {
           <div className="mt-20 grid grid-cols-2 gap-x-4 gap-y-16 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
             {team.map((member, i) => (
               <Reveal key={member.id} delay={0.1 + i * 0.05}>
-                <div className="group relative flex flex-col items-center">
+                {(() => {
+                  const card = (
+                    <div className={`group relative flex flex-col items-center ${member.link ? 'cursor-pointer' : ''}`}>
                   
-                  <div className="relative aspect-square w-24 sm:w-36 md:w-40 overflow-hidden rounded-full border border-white/20 bg-white/5 p-1 transition-all duration-700 ease-out-expo group-hover:border-white/60 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-                    {/* Inner Glass Layer */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/10 to-transparent backdrop-blur-sm" />
+                      <div className="relative aspect-square w-24 sm:w-36 md:w-40 overflow-hidden rounded-full border border-white/20 bg-white/5 p-1 transition-all duration-700 ease-out-expo group-hover:border-white/60 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                        {/* Inner Glass Layer */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/10 to-transparent backdrop-blur-sm" />
                     
-                    {/* Placeholder Content — Empty and clean */}
-                    <div className="relative h-full w-full overflow-hidden rounded-full">
-                       <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" />
-                    </div>
+                        {/* Placeholder Content — Empty and clean */}
+                        <div className="relative h-full w-full overflow-hidden rounded-full">
+                           <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" />
+                        </div>
 
-                    {/* Hover Glow Rim */}
-                    <div className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100 ring-1 ring-white/30" />
-                  </div>
+                        {/* Hover Glow Rim */}
+                        <div className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100 ring-1 ring-white/30" />
+                      </div>
 
-                  <div className="relative mt-8 text-center">
-                    <h4 className="font-display text-2xl sm:text-3xl tracking-tight text-white transition-colors duration-500 group-hover:text-white/100">
-                      {member.name}
-                    </h4>
-                    <div className="mt-2 flex flex-col items-center">
-                      <span className="h-px w-4 bg-white/20 transition-all duration-500 group-hover:w-12 group-hover:bg-ice-glow" />
-                      <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 transition-colors duration-500 group-hover:text-white/60">
-                        {member.role}
-                      </p>
+                      <div className="relative mt-8 text-center">
+                        <h4 className="font-display text-2xl sm:text-3xl tracking-tight text-white transition-colors duration-500 group-hover:text-white/100">
+                          {member.name}
+                        </h4>
+                        <div className="mt-2 flex flex-col items-center">
+                          <span className="h-px w-4 bg-white/20 transition-all duration-500 group-hover:w-12 group-hover:bg-ice-glow" />
+                          <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 transition-colors duration-500 group-hover:text-white/60">
+                            {member.role}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  );
+                  return member.link ? (
+                    <a href={member.link} target="_blank" rel="noopener noreferrer" className="no-underline">{card}</a>
+                  ) : card;
+                })()}
               </Reveal>
             ))}
           </div>
