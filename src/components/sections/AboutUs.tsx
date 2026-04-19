@@ -2,11 +2,11 @@ import { Reveal } from "../Reveal";
 import { TextReveal } from "../TextReveal";
 
 const team = [
-  { name: "Binyamin", role: "Founder", id: "binyamin", color: "#A78BFA" },
   { name: "Abhijith", role: "Founder", id: "abhijith", color: "#60A5FA" },
+  { name: "Aiman", role: "Founder", id: "aiman", color: "#FBBF24" },
+  { name: "Binyamin", role: "Founder", id: "binyamin", color: "#A78BFA" },
   { name: "Raeed", role: "Founder", id: "raeed", color: "#34D399" },
   { name: "Rizwan", role: "Founder", id: "rizwan", color: "#F472B6" },
-  { name: "Aiman", role: "Founder", id: "aiman", color: "#FBBF24" },
 ];
 
 export const AboutUs = () => {
