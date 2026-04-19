@@ -24,7 +24,7 @@ export const Services = () => {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-2 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-6">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.06}>
               <div className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-ink p-7 transition-all duration-700 hover:bg-ink-soft hover:border-white/40 sm:p-10">
