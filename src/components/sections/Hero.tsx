@@ -47,7 +47,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="w-full font-display text-[clamp(2.5rem,10vw,9rem)] leading-[0.95] tracking-tight uppercase"
+          className="w-full font-display text-[clamp(2.25rem,12vw,9rem)] leading-[0.95] tracking-tight uppercase"
         >
           RUBIC STUDIO
         </motion.h1>
@@ -56,7 +56,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-          className="mt-8 max-w-xl text-balance text-base text-white/60 sm:text-lg"
+          className="mt-6 max-w-xl px-4 text-balance text-sm text-white/60 sm:mt-8 sm:px-0 sm:text-lg"
         >
           At Rubic Studio, we design and build immersive websites, sleek interfaces, and smart digital systems — crafted with pixel-perfect precision and intelligent design.
         </motion.p>
@@ -75,14 +75,7 @@ export const Hero = () => {
 
 
 
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50"
-      >
-        <ArrowDown className="mx-auto mb-2 h-3 w-3" />
-        scroll
-      </motion.div>
+
     </section>
   );
 };

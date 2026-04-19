@@ -10,7 +10,7 @@ export const Footer = () => {
             <span className="font-display text-2xl tracking-tight">Rubic Studio</span>
           </div>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-            RUBIC STUDIO · est. 2024
+            RUBIC STUDIO · est. 2026
           </p>
         </div>
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">

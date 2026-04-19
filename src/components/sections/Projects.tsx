@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { TiltCard } from "../TiltCard";
-import weddingImg from "@/assets/project-wedding.jpg";
-import todoImg from "@/assets/project-todo.jpg";
-import aibusImg from "@/assets/project-aibus.jpg";
+import weddingImg from "@/assets/project-wedding.png";
+import todoImg from "@/assets/project-todo.png";
+import aibusImg from "@/assets/project-aibus.png";
+import shopinfoImg from "@/assets/project-shopinfo.png";
 
 type Project = {
   id: string;
@@ -54,6 +55,18 @@ const projects: Project[] = [
     image: aibusImg,
     theme: "dark",
   },
+  {
+    id: "shopinfo",
+    title: "ShopInfo",
+    tagline: "Empowering local commerce discovery",
+    description:
+      "A sophisticated merchant portal and shopper discovery platform. ShopInfo bridges the gap between local businesses and their community, providing tools for inventory management and real-time storefront updates.",
+    stack: ["React", "Tailwind CSS", "Render"],
+    github: "https://github.com/AbhijithK2006/shopinfo",
+    live: "https://shopinfo-iw3x.onrender.com/dashboard",
+    image: shopinfoImg,
+    theme: "light",
+  },
 ];
 
 export const Projects = () => {
@@ -71,7 +84,7 @@ export const Projects = () => {
           </h2>
         </Reveal>
 
-        <div className="mt-20 grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-3">
+        <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08}>
               <div
@@ -84,7 +97,7 @@ export const Projects = () => {
                     p.theme === "dark"
                       ? "border-white/10 bg-ink text-white"
                       : "border-border bg-card text-foreground"
-                  } shadow-card transition-shadow duration-700 hover:shadow-soft`}
+                  } shadow-md sm:shadow-card lg:transition-shadow lg:duration-700 hover:shadow-soft`}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
@@ -101,10 +114,10 @@ export const Projects = () => {
                     </div>
                   </div>
                   <div className="p-4 sm:p-7">
-                    <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] opacity-60">
+                    <div className="flex items-center gap-2 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.2em] opacity-60">
                       0{i + 1} · {p.id === "wedding" ? "Invite" : "App"}
                     </div>
-                    <h3 className="mt-2 sm:mt-3 font-display text-xl sm:text-3xl leading-tight line-clamp-1">{p.title}</h3>
+                    <h3 className="mt-1 sm:mt-3 font-display text-lg sm:text-3xl leading-tight line-clamp-1">{p.title}</h3>
                     <p className={`mt-1 sm:mt-2 text-[10px] sm:text-sm line-clamp-1 ${p.theme === "dark" ? "text-white/60" : "text-muted-foreground"}`}>
                       {p.tagline}
                     </p>

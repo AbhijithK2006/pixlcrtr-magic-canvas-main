@@ -24,16 +24,16 @@ export const Services = () => {
           </h2>
         </Reveal>
 
-        <div className="mt-20 grid gap-6 sm:grid-cols-2">
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.06}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-ink p-10 transition-all duration-700 hover:bg-ink-soft hover:border-white/40">
-                <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-gradient-ice opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-25" />
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-ink p-7 transition-all duration-700 hover:bg-ink-soft hover:border-white/40 sm:p-10">
+                <div className="absolute -right-20 -top-20 h-40 w-40 lg:h-60 lg:w-60 rounded-full bg-gradient-ice opacity-0 lg:blur-3xl blur-2xl transition-opacity duration-700 group-hover:opacity-25" />
                 <div className="relative flex items-start justify-between">
                   <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">0{i + 1}</div>
                   <s.icon className="h-6 w-6 text-ice-glow" strokeWidth={1.4} />
                 </div>
-                <h3 className="relative mt-12 font-display text-4xl leading-tight transition-transform duration-700 ease-out-expo group-hover:-translate-y-1">
+                <h3 className="relative mt-8 font-display text-3xl leading-tight transition-transform duration-700 ease-out-expo group-hover:-translate-y-1 sm:mt-12 sm:text-4xl">
                   {s.title}
                 </h3>
                 <p className="relative mt-3 max-w-md text-sm text-white/60">{s.body}</p>

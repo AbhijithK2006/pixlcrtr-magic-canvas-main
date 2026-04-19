@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "../Reveal";
 import { MagneticButton } from "../MagneticButton";
-import { Send, Instagram, Mail, Loader2, Check } from "lucide-react";
+import { Send, Instagram, Mail, Loader2, Check, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -97,6 +97,26 @@ export const Contact = () => {
                 </span>
                 @rubicstudio
               </a>
+              <div className="mt-2 flex flex-col gap-2">
+                <a
+                  href="tel:+918590920619"
+                  className="group inline-flex items-center gap-3 text-sm transition-colors hover:text-primary"
+                >
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  +91 85909 20619
+                </a>
+                <a
+                  href="tel:+919400715520"
+                  className="group inline-flex items-center gap-3 text-sm transition-colors hover:text-primary"
+                >
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  +91 94007 15520
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>

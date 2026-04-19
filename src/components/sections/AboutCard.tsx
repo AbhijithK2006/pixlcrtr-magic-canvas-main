@@ -62,7 +62,10 @@ export const AboutCard = ({ title, body, icon: Icon, image, index, accent }: Abo
         style={{ scale, opacity, y: yOffset, rotate: cardRotate }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className="group relative h-[45vh] sm:h-[70vh] w-full max-w-5xl overflow-hidden rounded-2xl sm:rounded-3xl border border-white/30 bg-[#141620] shadow-[0_8px_60px_rgba(0,0,0,0.6)] transition-[transform,border-color] duration-500 ease-out-expo will-change-transform perspective-1000"
+        className={cn(
+          "group relative h-[45vh] sm:h-[70vh] w-full max-w-5xl overflow-hidden rounded-2xl sm:rounded-3xl border border-white/30 bg-[#141620] shadow-xl lg:shadow-[0_8px_60px_rgba(0,0,0,0.6)] transition-transform duration-500 ease-out-expo will-change-transform perspective-1000",
+          "lg:transition-[transform,border-color]"
+        )}
       >
         {/* Background Image Parallax */}
         <div className="absolute inset-0 z-0">
@@ -82,12 +85,12 @@ export const AboutCard = ({ title, body, icon: Icon, image, index, accent }: Abo
         </div>
 
         {/* Glow Effect */}
-        <div className="card-glow pointer-events-none absolute h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-[100px] transition-opacity duration-500" style={{ background: accent + '40' }} />
+        <div className="card-glow pointer-events-none absolute h-64 w-64 lg:h-96 lg:w-96 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-[60px] lg:blur-[100px] transition-opacity duration-500" style={{ background: accent + '40' }} />
 
         {/* Content */}
         <div className="relative z-10 flex h-full flex-col justify-end p-8 sm:p-16">
           <div 
-            className="mb-4 sm:mb-6 flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md"
+            className="mb-4 sm:mb-6 flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 lg:backdrop-blur-md"
             style={{ color: accent }}
           >
             <Icon className="h-6 w-6" strokeWidth={1.5} />
