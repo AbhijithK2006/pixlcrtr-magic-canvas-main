@@ -62,7 +62,7 @@ export const AboutCard = ({ title, body, icon: Icon, image, index, accent }: Abo
         style={{ scale, opacity, y: yOffset, rotate: cardRotate }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className="group relative h-[70vh] w-full max-w-5xl overflow-hidden rounded-3xl border border-white/30 bg-[#141620] shadow-[0_8px_60px_rgba(0,0,0,0.6)] transition-[transform,box-shadow,border-color] duration-500 ease-out-expo will-change-transform perspective-1000"
+        className="group relative h-[45vh] sm:h-[70vh] w-full max-w-5xl overflow-hidden rounded-2xl sm:rounded-3xl border border-white/30 bg-[#141620] shadow-[0_8px_60px_rgba(0,0,0,0.6)] transition-[transform,border-color] duration-500 ease-out-expo will-change-transform perspective-1000"
       >
         {/* Background Image Parallax */}
         <div className="absolute inset-0 z-0">
@@ -87,7 +87,7 @@ export const AboutCard = ({ title, body, icon: Icon, image, index, accent }: Abo
         {/* Content */}
         <div className="relative z-10 flex h-full flex-col justify-end p-8 sm:p-16">
           <div 
-            className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md"
+            className="mb-4 sm:mb-6 flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md"
             style={{ color: accent }}
           >
             <Icon className="h-6 w-6" strokeWidth={1.5} />
@@ -98,12 +98,12 @@ export const AboutCard = ({ title, body, icon: Icon, image, index, accent }: Abo
               <span className="h-px w-8 bg-white/30" />
               Pillar 0{index + 1}
             </div>
-            <h3 className="mt-4 font-display text-5xl leading-[0.9] text-white sm:text-7xl">
+            <h3 className="mt-2 sm:mt-4 font-display text-2xl leading-[1] text-white sm:text-7xl">
               {title}
             </h3>
           </div>
 
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-white sm:text-base">
+          <p className="mt-3 sm:mt-6 max-w-lg text-[10px] sm:text-base leading-relaxed text-white line-clamp-2 sm:line-clamp-none">
             {body}
           </p>
         </div>

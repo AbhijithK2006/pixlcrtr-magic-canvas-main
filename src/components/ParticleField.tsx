@@ -25,7 +25,8 @@ export const ParticleField = () => {
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    const COUNT = 3000;
+    const isMobile = window.innerWidth < 1024 || (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+    const COUNT = isMobile ? 500 : 1500;
     const positions = new Float32Array(COUNT * 3);
     const speeds = new Float32Array(COUNT);
     for (let i = 0; i < COUNT; i++) {
@@ -51,7 +52,7 @@ export const ParticleField = () => {
     const sprite = new THREE.CanvasTexture(c);
 
     const mat = new THREE.PointsMaterial({
-      size: 0.7,
+      size: isMobile ? 1.0 : 0.7,
       map: sprite,
       transparent: true,
       depthWrite: false, 
@@ -80,6 +81,7 @@ export const ParticleField = () => {
     }, { threshold: 0 });
     obs.observe(container);
 
+    const posArray = geom.attributes.position.array as Float32Array;
     const start = performance.now();
     const tick = () => {
       if (!isVisible) {
@@ -93,12 +95,13 @@ export const ParticleField = () => {
       points.rotation.y = t * 0.6 + mouse.x * 0.3;
       points.rotation.x = -mouse.y * 0.2;
 
-      const pos = geom.attributes.position as THREE.BufferAttribute;
+      // Direct array manipulation is faster than setZ
       for (let i = 0; i < COUNT; i++) {
-        const z = pos.getZ(i) + speeds[i] * 0.05;
-        pos.setZ(i, z > 125 ? -125 : z);
+        const i3 = i * 3 + 2;
+        posArray[i3] += speeds[i] * 0.05;
+        if (posArray[i3] > 125) posArray[i3] = -125;
       }
-      pos.needsUpdate = true;
+      geom.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
       raf = requestAnimationFrame(tick);

@@ -1,13 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { CursorGlow } from "@/components/CursorGlow";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Projects } from "@/components/sections/Projects";
-import { Services } from "@/components/sections/Services";
-import { Contact } from "@/components/sections/Contact";
+
+// Lazy load heavy sections
+const Projects = lazy(() => import("@/components/sections/Projects").then(m => ({ default: m.Projects })));
+const Services = lazy(() => import("@/components/sections/Services").then(m => ({ default: m.Services })));
+const AboutUs = lazy(() => import("@/components/sections/AboutUs").then(m => ({ default: m.AboutUs })));
+const Contact = lazy(() => import("@/components/sections/Contact").then(m => ({ default: m.Contact })));
 
 const Index = () => {
   useEffect(() => {
@@ -38,9 +41,12 @@ const Index = () => {
       <main className="relative flex-grow">
         <Hero />
         <About />
-        <Projects />
-        <Services />
-        <Contact />
+        <Suspense fallback={<div className="h-96 bg-black" />}>
+          <Projects />
+          <Services />
+          <AboutUs />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -110,6 +110,8 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    /* Prevent native smooth scroll from jittering with Lenis */
+    scroll-behavior: auto !important;
   }
   
   /* Optimize rendering for offscreen sections */

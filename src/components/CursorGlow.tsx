@@ -30,8 +30,20 @@ export const CursorGlow = () => {
       if (glowRef.current) glowRef.current.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
     };
 
+    let lastScrollY = window.scrollY;
+    let isScrolling = false;
+    let scrollTimeout = 0;
+
+    const onScroll = () => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => { isScrolling = false; }, 150);
+    };
+
     // Throttle theme detection to keep main thread free
+    // Also pause during scroll to prevent layout thrashing
     const themeTick = setInterval(() => {
+      if (isScrolling) return;
       const el = document.elementFromPoint(mx, my) as HTMLElement | null;
       if (!el) return;
       
@@ -41,7 +53,7 @@ export const CursorGlow = () => {
 
       const interactive = el.closest("a, button, [data-magnetic], [data-tilt]");
       setHover(!!interactive);
-    }, 150);
+    }, 250);
 
     const tick = () => {
       rx += (mx - rx) * 0.18;
@@ -51,6 +63,7 @@ export const CursorGlow = () => {
     };
 
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
     raf = requestAnimationFrame(tick);
     return () => { 
       window.removeEventListener("mousemove", onMove); 

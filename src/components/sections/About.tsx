@@ -46,22 +46,6 @@ const pillars = [
     image: intelligenceImg,
     accent: "#3B82F6"
   },
-  { 
-    id: "precision",
-    icon: Compass, 
-    title: "Precision", 
-    body: "Mathematical rigor applied to every pixel, transition, and line of code.",
-    image: precisionImg,
-    accent: "#22D3EE"
-  },
-  { 
-    id: "elegance",
-    icon: Aperture, 
-    title: "Elegance", 
-    body: "Minimalist sophistication where every detail serves a purpose.",
-    image: eleganceImg,
-    accent: "#F59E0B"
-  },
 ];
 
 export const About = () => {
@@ -80,15 +64,20 @@ export const About = () => {
   const headerScale = useTransform(scrollYProgress, [0.08, 0.14], [1, 0.9]);
 
   // PHASE 2: Cards (18%+ scroll). Only appear AFTER text is fully gone.
-  const trackOpacity = useTransform(scrollYProgress, [0.16, 0.22], [0, 1]);
+  const trackOpacity = useTransform(scrollYProgress, [0.18, 0.28], [0, 1]);
 
-  // PHASE 3: Horizontal motion (22%+ scroll). Only after cards are fully visible.
-  const x = useTransform(scrollYProgress, [0, 0.22, 1], ["0%", "0%", "-83.333%"]);
+  // PHASE 3: Horizontal motion (35%+ scroll). Only after cards are fully visible and stationary for a bit.
+  const x = useTransform(scrollYProgress, [0, 0.35, 1], ["0%", "0%", "-75%"]);
+
+  // Progress Bar Sync
+  const progressBarScale = useTransform(scrollYProgress, [0.35, 1], [0, 1]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const i = Math.min(6, Math.max(1, Math.floor(latest * 6.01) + 1));
+    // Only start counting progress once the horizontal motion begins
+    const p = latest < 0.35 ? 0 : (latest - 0.35) / 0.65;
+    const i = Math.min(4, Math.max(1, Math.floor(p * 3.99) + 1));
     setActiveIdx(i);
-    setShowHeader(latest < 0.15);
+    setShowHeader(latest < 0.17);
   });
 
   // Keyboard Navigation
@@ -102,12 +91,16 @@ export const About = () => {
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
         e.preventDefault();
         const currentProgress = scrollYProgress.get();
-        const currentIndex = Math.round(currentProgress * 6);
+        // Map current progress [0.35, 1.0] to [0, 3] index
+        const p = currentProgress < 0.35 ? 0 : (currentProgress - 0.35) / 0.65;
+        const currentIndex = Math.round(p * 3);
+        
         let targetIndex = e.key === "ArrowRight" ? currentIndex + 1 : currentIndex - 1;
-        targetIndex = Math.max(0, Math.min(5, targetIndex));
+        targetIndex = Math.max(0, Math.min(3, targetIndex));
         
         const sectionTop = window.scrollY + rect.top;
-        const targetScroll = sectionTop + (targetIndex / 6) * rect.height;
+        // Map target index back to absolute scroll position
+        const targetScroll = sectionTop + (0.35 + (targetIndex / 3) * 0.65) * rect.height;
         
         const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number) => void } }).__lenis;
         if (lenis) {
@@ -126,7 +119,7 @@ export const About = () => {
     <section 
       ref={containerRef} 
       id="about" 
-      className="relative bg-[#0A0C10] lg:h-[600vh]" 
+      className="relative bg-[#0A0C10] lg:h-[400vh]" 
       data-theme="dark"
     >
       <div className="lg:sticky lg:top-0 min-h-screen w-full lg:overflow-hidden flex flex-col">
@@ -164,9 +157,9 @@ export const About = () => {
         {/* Responsive Content */}
         <div className="flex-grow">
           {/* Mobile Layout: Vertical Scroll with Animated Cards */}
-          <div className="lg:hidden flex flex-col gap-8 pb-24 px-4">
-            {/* Mobile Intro Text */}
-            <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+          <div className="lg:hidden grid grid-cols-2 gap-4 pb-24 px-2 sm:px-4 sm:gap-8">
+            {/* Mobile Intro Text — Takes full width */}
+            <div className="col-span-2 min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
               <Reveal>
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <span className="h-px w-6 bg-white/20" />
@@ -187,14 +180,14 @@ export const About = () => {
             {pillars.map((p, i) => (
               <motion.div 
                 key={p.id + "-mobile"} 
-                className="min-h-[75vh] flex items-center"
-                initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(6px)" }}
+                className="flex items-center"
+                initial={{ opacity: 0, y: 40, scale: 0.95, filter: "blur(4px)" }}
                 whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ 
                   duration: 0.8, 
                   ease: [0.22, 1, 0.36, 1],
-                  delay: 0.1
+                  delay: (i % 2) * 0.1
                 }}
               >
                 <AboutCard {...p} index={i} />
@@ -206,7 +199,7 @@ export const About = () => {
           <div className="hidden lg:block h-screen overflow-hidden">
             <motion.div 
               style={{ x, opacity: trackOpacity }} 
-              className="flex h-full w-[600%]"
+              className="flex h-full w-[400%]"
             >
               {pillars.map((p, i) => (
                 <AboutCard key={p.id} {...p} index={i} />
@@ -219,11 +212,11 @@ export const About = () => {
         <div className="hidden lg:block absolute bottom-12 left-0 z-30 w-full px-12">
           <div className="container mx-auto flex items-end justify-between">
             <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/40">
-              <span className="text-white">0{activeIdx}</span> / 06
+              <span className="text-white">0{activeIdx}</span> / 04
             </div>
             <div className="relative h-px w-32 overflow-hidden bg-white/10 sm:w-64">
               <motion.div 
-                style={{ scaleX: scrollYProgress, originX: 0 }}
+                style={{ scaleX: progressBarScale, originX: 0 }}
                 className="absolute inset-0 bg-ice-glow"
               />
             </div>

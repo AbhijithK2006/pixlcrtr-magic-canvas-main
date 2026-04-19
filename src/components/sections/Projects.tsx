@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, X, ArrowUpRight } from "lucide-react";
+import { X, ArrowUpRight } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { TiltCard } from "../TiltCard";
 import weddingImg from "@/assets/project-wedding.jpg";
@@ -71,7 +71,7 @@ export const Projects = () => {
           </h2>
         </Reveal>
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
+        <div className="mt-20 grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08}>
               <div
@@ -80,7 +80,7 @@ export const Projects = () => {
               >
                 <TiltCard
                   data-theme={p.theme}
-                  className={`relative overflow-hidden rounded-2xl border ${
+                  className={`relative overflow-hidden rounded-xl sm:rounded-2xl border ${
                     p.theme === "dark"
                       ? "border-white/10 bg-ink text-white"
                       : "border-border bg-card text-foreground"
@@ -96,55 +96,29 @@ export const Projects = () => {
                       className="h-full w-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-105"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    <div className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-ink opacity-0 transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100" style={{ transform: "translateY(-6px)" }}>
-                      <ArrowUpRight className="h-4 w-4" />
+                    <div className="absolute right-3 top-3 sm:right-4 sm:top-4 inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 text-ink opacity-0 transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100" style={{ transform: "translateY(-6px)" }}>
+                      <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
                     </div>
                   </div>
-                  <div className="p-7">
-                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] opacity-60">
-                      0{i + 1} · case study
+                  <div className="p-4 sm:p-7">
+                    <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] opacity-60">
+                      0{i + 1} · {p.id === "wedding" ? "Invite" : "App"}
                     </div>
-                    <h3 className="mt-3 font-display text-3xl leading-tight">{p.title}</h3>
-                    <p className={`mt-2 text-sm ${p.theme === "dark" ? "text-white/60" : "text-muted-foreground"}`}>
+                    <h3 className="mt-2 sm:mt-3 font-display text-xl sm:text-3xl leading-tight line-clamp-1">{p.title}</h3>
+                    <p className={`mt-1 sm:mt-2 text-[10px] sm:text-sm line-clamp-1 ${p.theme === "dark" ? "text-white/60" : "text-muted-foreground"}`}>
                       {p.tagline}
                     </p>
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                      {p.stack.map((s) => (
+                    <div className="mt-3 flex flex-wrap gap-1.5 overflow-hidden">
+                      {p.stack.slice(0, 3).map((s) => (
                         <span
                           key={s}
-                          className={`rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider ${
+                          className={`rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1 font-mono text-[8px] sm:text-[10px] uppercase tracking-wider ${
                             p.theme === "dark" ? "bg-white/10 text-white/70" : "bg-secondary text-secondary-foreground"
                           }`}
                         >
                           {s}
                         </span>
                       ))}
-                    </div>
-                    <div className={`mt-6 pt-6 border-t flex flex-wrap gap-x-6 gap-y-3 ${p.theme === "dark" ? "border-white/10" : "border-border/50"}`}>
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className={`inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] transition-colors ${
-                          p.theme === "dark" ? "text-white/40 hover:text-white" : "text-muted-foreground hover:text-ink"
-                        }`}
-                      >
-                        <Github className="h-3.5 w-3.5" /> GitHub
-                      </a>
-                      {p.live && (
-                        <a
-                          href={p.live}
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className={`inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] transition-colors ${
-                            p.theme === "dark" ? "text-ice-glow hover:text-white" : "text-ink hover:text-primary"
-                          }`}
-                        >
-                          <ArrowUpRight className="h-3.5 w-3.5" /> View site
-                        </a>
-                      )}
                     </div>
                   </div>
                 </TiltCard>
@@ -223,26 +197,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                   ))}
                 </div>
               </div>
-              <div className="flex flex-col gap-3">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-ice px-5 py-3 text-sm font-medium text-primary-foreground transition-shadow hover:shadow-glow"
-                >
-                  <Github className="h-4 w-4" /> View on GitHub
-                </a>
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm hover:bg-white/5"
-                  >
-                    <ExternalLink className="h-4 w-4" /> View site
-                  </a>
-                )}
-              </div>
+
             </div>
           </div>
         </div>

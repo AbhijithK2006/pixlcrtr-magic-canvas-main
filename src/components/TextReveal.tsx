@@ -7,9 +7,10 @@ interface TextRevealProps {
   className?: string;
   delay?: number;
   once?: boolean;
+  as?: "h1" | "h2" | "h3" | "p" | "span";
 }
 
-export const TextReveal = ({ text, className, delay = 0, once = true }: TextRevealProps) => {
+export const TextReveal = ({ text, className, delay = 0, once = true, as: Tag = "h2" }: TextRevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once, margin: "-5% 0px" });
   const words = text.split(" ");
@@ -19,31 +20,33 @@ export const TextReveal = ({ text, className, delay = 0, once = true }: TextReve
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.06,
+        staggerChildren: 0.02,
         delayChildren: delay,
       },
     },
   };
 
-  const word = {
-    hidden: {
-      opacity: 0,
-      y: 24,
-      filter: "blur(10px)",
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 10,
+      filter: "blur(4px)",
     },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.7,
+        duration: 0.4,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
+  const MotionTag = motion[Tag];
+
   return (
-    <motion.h2
+    <MotionTag
       ref={ref}
       className={cn("flex flex-wrap justify-center", className)}
       variants={container}
@@ -53,12 +56,12 @@ export const TextReveal = ({ text, className, delay = 0, once = true }: TextReve
       {words.map((w, i) => (
         <motion.span
           key={i}
-          variants={word}
+          variants={wordVariants}
           className="mr-[0.3em] inline-block will-change-[transform,filter,opacity]"
         >
           {w}
         </motion.span>
       ))}
-    </motion.h2>
+    </MotionTag>
   );
 };

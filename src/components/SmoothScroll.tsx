@@ -3,10 +3,13 @@ import Lenis from "lenis";
 
 export const SmoothScroll = () => {
   useEffect(() => {
+    const isMobile = window.innerWidth < 1024 || (navigator.maxTouchPoints > 0);
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: isMobile ? 1.0 : 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: isMobile ? 0.8 : 1.0,
+      touchMultiplier: 1.5,
     });
     let raf = 0;
     const tick = (time: number) => {
