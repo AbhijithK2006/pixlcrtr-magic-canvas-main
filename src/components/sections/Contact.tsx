@@ -78,9 +78,7 @@ export const Contact = () => {
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-col gap-3">
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.rubicstudio@gmail.com"
-                target="_blank"
-                rel="noreferrer"
+                href="mailto:hello.rubicstudio@gmail.com?subject=Contact%20via%20Rubic%20Studio"
                 className="group inline-flex items-center gap-3 text-sm transition-colors hover:text-primary"
               >
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
